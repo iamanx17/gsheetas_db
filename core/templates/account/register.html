@@ -1,0 +1,113 @@
+{% extends 'core/base.html' %}
+{% block title %}Register{% endblock title %}
+{% block sitetitle %}Register{% endblock sitetitle %}
+
+{% block content %}
+{% if messages is not None %}
+<div class="container my-5">
+  {% for i in messages %}
+  <div class="alert alert-{{i.tags}} alert-dismissible fade show" role="alert">
+    <strong>Hey {{user.username}}</strong>{{i}}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="container my-5 w-75 mx-auto">
+  <h1 class="text-center">Create your account</h1>
+  <hr class="w-50 mx-auto" />
+  <div class="register">
+    <form action="/register/" method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input
+          required
+          type="email"
+          name="email"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Email address"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">User Name</label>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          name="username"
+          placeholder="username"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">First Name</label>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          name="first_name"
+          placeholder="john"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Last Name</label>
+        <input
+          required
+          type="text"
+          class="form-control"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          name="last_name"
+          placeholder="wick"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input
+          required
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          name="password1"
+          placeholder='Enter your password'
+        />
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label"
+          >Confirm Password</label
+        >
+        <input
+          required
+          type="password"
+          class="form-control"
+          id="exampleInputPassword1"
+          name="password2"
+          placeholder='Confirm your password'
+        />
+      </div>
+
+      <button type="submit" class="btn btn-danger">Submit</button>
+    </form>
+    <p class='mt-4'>Your password is saved in encrypted form so not to worry. Already have an account <a href='/login/' style='text-decoration:none'>Login </a></p>
+    
+  </div>
+</div>
+
+
+
+
+
+{% endblock content %}

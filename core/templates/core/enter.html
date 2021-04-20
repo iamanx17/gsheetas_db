@@ -1,0 +1,72 @@
+{% extends 'core/base.html' %} {% block title %}Enter data{% endblock title %}
+{% block sitetitle %}Enter data{% endblock sitetitle %} {% block content %}
+
+{% if messages is not None %}
+<div class="container my-5">
+  {% for i in messages %}
+  <div class="alert alert-{{i.tags}} alert-dismissible fade show" role="alert">
+    <strong>Hey {{user.username}}</strong>{{i}}
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="container my-5">
+  <h3 class="text-center">Welcome to Google sheet api</h3>
+  <p class="text-center text-warning my-4">Prepare your directory:</p>
+  <hr class="w-50 mx-auto my-4" />
+
+  {% if user.is_authenticated %}
+
+
+  <div class="row my-5 px-lg-5">
+    <div class="col-lg-5 col-12">
+      <ul class="list-group">
+        <h3 class="mb-3">Your sheet id</h3>
+        <li class="list-group-item list-group-item-info">
+        1ovD41uW0qV8qBnjSnSspQo2uCg26_MafNUPwctE1Ipc
+     
+        </li>
+      </ul>      
+      <a href="{{full}}" class="btn btn-warning my-4 mx-2">View Sheet</a>
+      <a href="#" class="btn btn-danger my-4">Count Url {{counturl}}</a>
+
+
+    </div>
+    <div class="col-lg-7 col-12">
+      <h3 class='mb-3'>Enter url for directory</h3>
+      <form action='/enterdata/' method='post'>
+        {% csrf_token %}  
+      <input
+      placeholder="Enter your url"
+        type="url"
+        name='url'
+        id="inputPassword5"
+        class="form-control"
+        aria-describedby="passwordHelpBlock" />
+      <button class="btn btn-primary my-4" type='submit'>Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% else %}
+
+  <div class="row my-4 justify-content-center">
+    <div class="col-auto">
+    <h3 class='text-center mx-4'>Please login to access this api.</h3>
+    </div>
+    <div class="col-auto">
+    <a href="/login/" class="btn btn-warning">Login</a>
+    </div>
+  </div>
+{% endif %}
+
+{% endblock content %}

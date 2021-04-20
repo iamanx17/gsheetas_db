@@ -1,0 +1,1 @@
+web: gunicorn gsheetas_db.wsgi
